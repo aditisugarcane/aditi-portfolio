@@ -1,0 +1,155 @@
+/* Round four: info and contact cards, bigger illustrations in the page openings, the big gate, the research and
+   comments on the TikTok page, the films opening, the About page with the tumbling deck, and two coming-soon pages. */
+
+/* ---------------- info and contact: footer links and the white card ---------------- */
+.ls-fl{position:relative;padding:0;border:0;background:none;font-family:var(--f-wide);font-size:12px;letter-spacing:.02em;color:#fff;pointer-events:auto;cursor:pointer}
+.ls-fl::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--e-out)}
+.ls-fl:hover::after,.ls-fl.on::after{transform:scaleX(1);transform-origin:left}
+.ls-ic{position:fixed;inset:0;z-index:128;display:grid;place-items:center;pointer-events:none}
+.ls-ic-in{position:relative;width:min(340px,86vw);max-height:min(520px,82vh);overflow:auto;background:#f4f4f4;color:#000;padding:30px 30px 34px;text-align:center;pointer-events:auto;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.6);opacity:0;transform:translateY(10px) scale(.985);transition:opacity .22s linear,transform .4s var(--e-out)}
+.ls-ic.on .ls-ic-in{opacity:1;transform:none}
+.ls-ic-x{position:absolute;right:10px;top:10px;width:22px;height:22px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer}
+.ls-ic-x svg{width:10px;height:10px;fill:none;stroke:#000;stroke-width:1.4}
+.ls-ic-x:hover{transform:rotate(90deg);transition:transform .3s var(--e-out)}
+.ls-ic-logo{display:block;margin:0 auto 18px;font-family:var(--f-name);font-size:30px;line-height:.9;letter-spacing:.02em}
+.ls-ic p{margin:0 0 14px;font-family:var(--f-body);font-size:10.5px;line-height:1.7}
+.ls-ic p a{text-decoration:underline;text-underline-offset:3px}
+.ls-ic h4{margin:18px 0 4px;font-family:var(--f-cap);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+.ls-ic h4:first-child{margin-top:4px}
+.ls-ic[data-k="contact"] p{margin-bottom:6px}
+
+/* ---------------- page openings: bigger animations where asked, bigger drawings beside the title ---------------- */
+.lp-stick .ls-in-f.big{height:min(70vh,calc(76vw / var(--ar,1)),86vw);bottom:12vh}
+.ls-splash{max-width:none;width:clamp(120px,15vw,250px);opacity:1}
+.lp-head .ls-splash{position:absolute;z-index:-1}
+.ls-sec>.ls-splash{width:clamp(110px,12vw,200px)}
+@media (max-width:760px){.lp-head .ls-splash{width:26vw;top:auto!important;bottom:4vh}.ls-sec>.ls-splash{width:22vw}}
+
+/* ---------------- TikTok famous: the research, after Atelier ---------------- */
+.rs-sec{padding:18vh max(6vw,20px) 16vh}
+.rs-hd{max-width:980px;margin:0 auto 7vh;text-align:center}
+.rs-k{margin:0 0 18px;font-family:var(--f-wide);font-size:10.5px;font-weight:600;letter-spacing:.08em}
+.rs-t{margin:0;font-family:var(--f-cap);font-weight:400;font-size:clamp(44px,6.4vw,104px);line-height:.95;letter-spacing:-.01em}
+.rs-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:4vw;max-width:980px;margin:0 auto 12vh;align-items:start}
+.rs-body p{margin:0 0 14px;font-family:var(--f-body);font-size:12.5px;line-height:1.8}
+.rs-pull{margin:0;font-family:var(--f-cap);font-size:clamp(24px,2.4vw,36px);line-height:1.2}
+.rs-arch{position:relative;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:5vw;gap:1.6vw}
+.rs-f{margin:0;position:relative}
+.rs-f img{display:block;width:100%;height:100%;object-fit:cover;box-shadow:0 20px 40px -24px rgba(0,0,0,.55);transition:transform .6s var(--e-out)}
+.rs-f:hover img{transform:scale(1.03)}
+.rs-f figcaption{position:absolute;left:0;top:calc(100% + 6px);font-family:var(--f-body);font-size:9.5px;color:#6b6b6b;white-space:nowrap}
+.rs-f.f0{grid-column:1/6;grid-row:1/5}.rs-f.f1{grid-column:7/13;grid-row:2/5}.rs-f.f2{grid-column:2/4;grid-row:6/10}
+.rs-f.f3{grid-column:5/8;grid-row:6/11}.rs-f.f4{grid-column:9/12;grid-row:6/10}.rs-f.f5{grid-column:1/4;grid-row:12/16}
+.rs-f.f6{grid-column:5/8;grid-row:12/17}.rs-f.f7{grid-column:9/13;grid-row:12/15}.rs-f.f8{grid-column:2/6;grid-row:18/21}
+.rs-f.f9{grid-column:7/11;grid-row:18/22}.rs-f.f10{grid-column:1/5;grid-row:23/26}.rs-f.f11{grid-column:6/10;grid-row:24/27}
+.rs-clips{max-width:760px;margin:14vh auto 0}
+.rs-clips .tl-meta{text-align:center;margin-top:16px}
+@media (max-width:760px){
+  .rs-cols{grid-template-columns:1fr}
+  .rs-arch{grid-template-columns:repeat(6,1fr);grid-auto-rows:16vw;gap:4vw}
+  .rs-f.f0,.rs-f.f1,.rs-f.f7,.rs-f.f8,.rs-f.f9,.rs-f.f10,.rs-f.f11{grid-column:span 6;grid-row:span 3}
+  .rs-f.f2,.rs-f.f3,.rs-f.f4,.rs-f.f5,.rs-f.f6{grid-column:span 3;grid-row:span 4}
+}
+
+/* ---------------- TikTok famous: comments scattered on black ---------------- */
+.cw-sec{padding:16vh max(4vw,16px) 18vh;color:#fff}
+.cw-hd{text-align:center;margin-bottom:8vh}
+.cw-t{margin:0;font-family:var(--f-wide);font-weight:600;font-size:clamp(28px,3.2vw,46px);letter-spacing:-.02em}
+.cw-wall{position:relative;max-width:1240px;margin:0 auto;height:2050px}
+.cw-c{position:absolute;width:min(360px,30vw);background:#fff;color:#0f1419;border-radius:16px;padding:16px 18px 14px;box-shadow:0 30px 50px -30px rgba(0,0,0,.9);transition:transform .5s var(--e-out)}
+.cw-c:hover{transform:translateY(-4px) rotate(-.4deg)}
+.cw-c header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cw-av{flex:none;width:38px;height:38px;border-radius:50%;background:#1d1d1d;color:#fff;display:grid;place-items:center;font-style:normal;font-family:var(--f-wide);font-size:15px;font-weight:700}
+.cw-av.me{background:#000;color:#fff;font-family:var(--f-name)}
+.cw-c header span{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.cw-c header b{font-family:var(--f-wide);font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cw-c header em{font-style:normal;font-family:var(--f-wide);font-size:12.5px;color:#536471}
+.cw-c header svg{margin-left:auto;width:10px;height:6px;fill:none;stroke:#536471;stroke-width:1.4}
+.cw-c p{margin:0 0 10px;font-family:var(--f-wide);font-size:16px;line-height:1.35}
+.cw-c.big p{font-size:22px;font-weight:800;font-stretch:110%;text-transform:uppercase;line-height:1.1}
+.cw-c img{display:block;width:100%;height:auto;border-radius:12px;margin-bottom:10px;border:1px solid #e6ecf0}
+.cw-c footer{font-family:var(--f-wide);font-size:12px;color:#536471}
+.cw-c.c0{left:2%;top:0}.cw-c.c1{left:36%;top:120px}.cw-c.c2{left:70%;top:40px}
+.cw-c.c3{left:66%;top:420px}.cw-c.c4{left:6%;top:620px}.cw-c.c5{left:36%;top:760px}
+.cw-c.c6{left:70%;top:1060px}.cw-c.c7{left:4%;top:1220px}.cw-c.c8{left:36%;top:1380px}
+@media (max-width:760px){.cw-wall{height:auto;display:flex;flex-direction:column;gap:22px}.cw-c{position:relative;left:auto!important;top:auto!important;width:auto}}
+
+/* ---------------- brands, with the real messages ---------------- */
+.ls-msg img{display:block;width:100%;height:auto;margin:-4px 0 10px;border:1px solid #e6e6e6}
+
+/* ---------------- films: the opening in front of the discs ---------------- */
+.fi-pg{z-index:58;opacity:calc(1 - var(--fo,0));transition:opacity .2s linear}
+.fi-pg.done{opacity:0!important;pointer-events:none;transition:opacity .6s var(--e-io)}
+.fi-out{height:100vh;display:grid;place-items:center;background:transparent}
+.fi-go{font-family:var(--f-body);font-size:11px;color:#6b6b6b}
+.fi-skip{position:fixed;right:max(54px,env(safe-area-inset-right,0px));bottom:22px;z-index:3;color:var(--ls-ink,#fff);background:transparent;border-color:currentColor;opacity:.85}
+.fi-skip:hover{background:var(--ls-ink,#fff);color:#808080}
+html.ls-dark .fi-skip:hover{color:#000}html:not(.ls-dark) .fi-skip:hover{color:#fff}
+
+/* ---------------- About: the name and the tumbling deck ---------------- */
+.ab-pg{background:#efefef;color:#000}
+.ab-run{height:260vh}
+.ab-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:1100px}
+.ab-part{position:absolute;left:50%;top:max(28px,4vh);transform:translateX(-50%);margin:0;font-family:var(--f-wide);font-size:10.5px;font-weight:600;letter-spacing:.08em}
+.ab-name{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;display:flex;flex-direction:column;align-items:center;font-family:var(--f-cap);font-weight:400;font-size:clamp(70px,15.5vw,250px);line-height:.86;letter-spacing:-.01em;z-index:1;pointer-events:none}
+.ab-name span:last-child{margin-top:.02em}
+.ab-pg.play .ab-name span{animation:rise 1.1s var(--e-out) both}
+.ab-pg.play .ab-name span:last-child{animation-delay:.12s}
+.ab-deck{position:absolute;left:50%;top:42%;width:0;height:0;transform-style:preserve-3d}
+.ab-card{position:absolute;left:calc(clamp(84px,11vw,180px) / -2);top:calc(clamp(84px,11vw,180px) * -.7);width:clamp(84px,11vw,180px);aspect-ratio:5/7;transform-style:preserve-3d;z-index:0;will-change:transform}
+.ab-card.fr{z-index:2}
+.ab-in{position:absolute;inset:0;transform-style:preserve-3d}
+.ab-face,.ab-back{position:absolute;inset:0;border-radius:6px;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.18),0 10px 18px -8px rgba(0,0,0,.35)}
+.ab-face{background:#f7f6f2;display:grid;place-items:center;overflow:hidden}
+.ab-face img{width:82%;height:72%;object-fit:contain}
+.ab-face b{position:absolute;left:7%;top:5%;font-family:var(--f-cap);font-weight:700;font-size:clamp(8px,.95vw,15px);color:#b3261e;line-height:1}
+.ab-face b.r{left:auto;top:auto;right:7%;bottom:5%;transform:rotate(180deg)}
+.ab-back{transform:rotateY(180deg);background:#f7f6f2;padding:7%}
+.ab-back i{display:block;width:100%;height:100%;border-radius:3px;background:
+  radial-gradient(circle at 50% 50%,#f7f6f2 0 16%,#111 16.5% 19%,transparent 19.5%),
+  repeating-linear-gradient(45deg,#111 0 1.5px,transparent 1.5px 7px),repeating-linear-gradient(-45deg,#111 0 1.5px,transparent 1.5px 7px),#f7f6f2;
+  box-shadow:inset 0 0 0 2px #111,inset 0 0 0 5px #f7f6f2,inset 0 0 0 6px #111}
+.ab-hint{position:absolute;left:50%;bottom:6vh;transform:translateX(-50%);margin:0;font-family:var(--f-body);font-style:italic;font-size:10.5px;color:#6b6b6b}
+.ab-ch{max-width:980px;margin:0 auto;padding:16vh max(6vw,20px) 6vh;text-align:center}
+.ab-k{margin:0 0 20px;font-family:var(--f-wide);font-size:10.5px;font-weight:600;letter-spacing:.08em}
+.ab-t{margin:0 0 22px;font-family:var(--f-cap);font-weight:400;font-size:clamp(48px,7vw,110px);line-height:.95}
+.ab-t.sm{font-size:clamp(40px,5vw,80px)}
+.ab-lede{margin:0 auto 9vh;max-width:640px;font-family:var(--f-cap);font-size:clamp(22px,2.2vw,32px);line-height:1.25}
+.ab-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:4vw;text-align:left;align-items:start}
+.ab-body p{margin:0 0 14px;font-family:var(--f-body);font-size:12.5px;line-height:1.8}
+.ab-pull{margin:0;font-family:var(--f-cap);font-size:clamp(24px,2.4vw,36px);line-height:1.2}
+.ab-links{list-style:none;margin:6vh auto 0;padding:0;max-width:640px;border-top:1px solid #000;text-align:left}
+.ab-links li>*{display:flex;align-items:center;gap:20px;padding:18px 4px;border-bottom:1px solid #000;transition:padding .35s var(--e-out),background .25s}
+.ab-links a:hover{padding-left:14px;background:#fff}
+.ab-links .k{width:120px;font-family:var(--f-cap);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.ab-links .v{font-family:var(--f-body);font-size:12.5px}
+.ab-links svg{margin-left:auto;width:16px;height:10px;fill:none;stroke:#000;stroke-width:1.4;transition:transform .35s var(--e-out)}
+.ab-links a:hover svg{transform:translateX(4px)}
+.ab-links div svg{opacity:.25}
+.ab-av{display:flex;gap:14px;align-items:flex-start;max-width:640px;margin:7vh auto 10vh;text-align:left}
+.ab-av>i{flex:none;width:10px;height:10px;margin-top:4px;border-radius:50%;background:#1e9e4a;box-shadow:0 0 0 4px rgba(30,158,74,.18);animation:avp 2s var(--e-io) infinite}
+@keyframes avp{50%{box-shadow:0 0 0 8px rgba(30,158,74,0)}}
+.ab-av b{display:block;margin-bottom:4px;font-family:var(--f-cap);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.ab-av p{margin:0;font-family:var(--f-body);font-size:12.5px;line-height:1.7}
+.ab-pg .ls-ft{color:#000}
+@media (max-width:760px){.ab-cols{grid-template-columns:1fr}.ab-links .k{width:90px}}
+
+/* ---------------- the coming-soon pages ---------------- */
+.cs-sec{padding:12vh max(6vw,20px) 16vh;text-align:center}
+.cs-tag{margin:0 0 7vh;font-family:var(--f-body);font-style:italic;font-size:11px;color:#6b6b6b}
+.cs-wall{max-width:1100px;margin:0 auto;columns:3 240px;column-gap:24px}
+.cs-fr{break-inside:avoid;margin:0 0 24px;display:grid;place-items:center;border:1.5px dashed #b5b5b5;background:repeating-linear-gradient(-45deg,#f6f6f6 0 10px,#fff 10px 20px);color:#9a9a9a;font-family:var(--f-body);font-size:10px;letter-spacing:.06em}
+.cs-fr:nth-child(3n+1){aspect-ratio:4/5}.cs-fr:nth-child(3n+2){aspect-ratio:1}.cs-fr:nth-child(3n){aspect-ratio:3/4}
+.cs-list{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5vw 4vw;text-align:left}
+.cs-pr{transition:transform .5s var(--e-out)}
+.cs-pr:hover{transform:translateY(-6px)}
+.cs-br{display:flex;align-items:center;gap:6px;height:26px;padding:0 10px;background:#e9e9e9;border:1px solid #d5d5d5;border-bottom:0;border-radius:8px 8px 0 0}
+.cs-br i{width:8px;height:8px;border-radius:50%;background:#c6c6c6}
+.cs-br span{margin-left:10px;font-family:var(--f-body);font-size:9.5px;color:#8c8c8c}
+.cs-sc{aspect-ratio:16/10;display:grid;place-items:center;border:1px solid #d5d5d5;background:repeating-linear-gradient(-45deg,#f6f6f6 0 10px,#fff 10px 20px)}
+.cs-sc span{font-family:var(--f-wide);font-weight:800;font-stretch:125%;font-size:clamp(14px,1.6vw,22px);color:#cfcfcf}
+.cs-pr p{display:flex;justify-content:space-between;margin:12px 0 0;font-family:var(--f-body);font-size:11.5px}
+.cs-pr p span{color:#8c8c8c}
+@media (max-width:760px){.cs-list{grid-template-columns:1fr}}
+.ls-ic[hidden]{display:none}

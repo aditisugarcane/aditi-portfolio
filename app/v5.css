@@ -1,0 +1,131 @@
+/* Round three: Longshot's exact colours (black, #efefef, white, no grain on the pages), the home strip in
+   Longshot's order, the printer back to its original look, the vinyl and the phone, and her drawings in colour. */
+
+/* ---------------- colours: plain black, grey and white; the grain stays only on the CD page ---------------- */
+.fx-grain{display:none}
+body.proj .fx-grain{display:block}
+.ls-grey{background:transparent}
+
+/* ---------------- the printer: its original finish, the website's fonts ---------------- */
+.pr-printer{filter:drop-shadow(0 24px 52px rgba(120,140,220,.30)) drop-shadow(0 6px 16px rgba(0,0,0,.10))}
+.pr-words h1{font-family:var(--f-wide);font-weight:700;font-size:26px;letter-spacing:-.02em}
+.pr-words p{font-family:var(--f-body);font-size:12.5px;line-height:21px}
+.pr-label{font-family:var(--f-body);font-size:12px}
+.pr-hint{font-family:var(--f-body);font-style:normal;font-size:11.5px}
+.pr-enter{font-family:var(--f-wide);font-weight:600;font-size:15px}
+.pr-skip{font-family:var(--f-body);font-size:12px}
+
+/* ---------------- "scroll down bruh" in the body font, as on Longshot ---------------- */
+.ls-bruh span{font-family:var(--f-body);font-size:13px}
+
+/* ---------------- page openings: the words arrive one by one as you scroll ---------------- */
+.ls-pg.play .ls-in-k,.ls-pg.play .ls-in-s{animation:none}
+.lp-stick .ls-in-k,.lp-stick .ls-in-s{transition:opacity .25s linear}
+
+/* ---------------- home: one track, Longshot's order and sizes ---------------- */
+.lh-track{height:100%}
+.lh-hint,.lh-word,.lh-role{left:50vw!important}
+.lh-hero{left:50vw;bottom:0;height:calc(63 * var(--u))}
+.lh-hand{position:absolute;left:calc(63 * var(--u));top:calc(32.5 * var(--u));height:calc(17 * var(--u));z-index:3}
+.lh-hand .ls-fig{height:100%}
+.lh-f{position:absolute;display:block;color:#fff}
+.lh-f .ls-fig{height:100%}
+.lh-f.blend{mix-blend-mode:screen}
+.lh-tag{position:absolute;left:0;top:-46px;display:flex;flex-direction:column;gap:3px;white-space:nowrap;opacity:0;transform:translateY(6px);transition:opacity .4s var(--e-out),transform .5s var(--e-out);pointer-events:none}
+.lh-f.fl .lh-tag{top:auto;bottom:-46px;transform:translateY(-6px)}
+.lh-tag b{font-family:var(--f-cap);font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.lh-tag span{font-family:var(--f-body);font-size:11px;color:#bdbdbd}
+a.lh-f:hover .lh-tag,a.lh-f:focus-visible .lh-tag{opacity:1;transform:none}
+a.lh-f:focus-visible{outline:none}
+.lh-end{position:absolute;top:0;bottom:0;width:max(100vw,calc(80 * var(--u) + 560px));display:block}
+.lh-endf{left:3vw;height:calc(81.6 * var(--u))}
+.lh-letter{left:calc(3vw + 80 * var(--u))}
+.lh-cred{display:none}
+@media (max-width:760px){
+  .lh-end{width:calc(80 * var(--u) + 92vw)}
+  .lh-letter{left:calc(3vw + 80 * var(--u));top:14vh;width:84vw}
+  .lh-hand{left:6vw;top:20vh}
+}
+
+/* ---------------- her drawings, in colour, small, drifting ---------------- */
+.ls-splash{position:absolute;z-index:-1;height:auto;max-width:180px;pointer-events:none;filter:drop-shadow(0 10px 14px rgba(0,0,0,.12));opacity:.96}
+.ls-sec{isolation:isolate}
+@media (max-width:760px){.ls-splash{max-width:90px;opacity:.85}}
+
+/* ---------------- the vinyl stack ---------------- */
+.vn-stack{height:330vh}
+.vn-words{gap:0;font-size:clamp(22px,6.6vh,64px);line-height:1;color:#000;justify-content:center}
+.vn-words span{transform:none;transition:color .5s}
+.vn-words span:nth-child(3n){color:inherit;text-decoration:none}
+.vn-words span.u{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.vn-words span.g{color:#bdbdbd}
+.vn-set{position:absolute;top:var(--y,120vh);z-index:2}
+.vn-set[data-k="a"]{left:3vw;width:24vw}
+.vn-set[data-k="b"]{left:55vw;width:25vw}
+.vn-set .vn-sleeve{position:relative;z-index:1}
+.vn-set .vn-vinyl.slide{position:absolute;top:3%;left:3%;width:94%;z-index:0}
+.vn-set .vn-vinyl.slide.l{translate:calc(var(--ex,0) * -58%) 0;rotate:calc(var(--rot,0deg) * -1)}
+.vn-set .vn-vinyl.slide.r{translate:calc(var(--ex,0) * 60%) 0;rotate:var(--rot,0deg)}
+.vn-set.gate{left:17vw;width:60vw;height:30vw}
+.vn-set.gate .vn-sleeve{position:absolute;width:24vw;top:0}
+.vn-set.gate .tl{left:0;rotate:-4deg}
+.vn-set.gate .tr{left:23vw;rotate:3deg}
+.vn-set.gate .pile{position:absolute;width:17vw;height:auto;bottom:auto;right:auto;z-index:2}
+.vn-set.gate .p1{left:calc(30vw + var(--ex,0) * 10vw);top:calc(12vw + var(--ex,0) * -4vw);rotate:var(--rot,0deg)}
+.vn-set.gate .p2{left:calc(40vw + var(--ex,0) * 14vw);top:calc(6vw + var(--ex,0) * 2vw);rotate:calc(var(--rot,0deg) * -1)}
+.vn-loose{position:absolute;top:var(--y,150vh);z-index:3}
+.vn-loose .vn-vinyl{rotate:var(--rot,0deg)}
+.vn-loose[data-k="1"]{left:76vw;width:15vw}
+.vn-loose[data-k="2"]{left:6vw;width:11vw}
+.vn-loose[data-k="3"]{left:88vw;width:9vw}
+.vn-vinyl .lab{inset:32%;background:#f1f1ee center/180% no-repeat;box-shadow:inset 0 0 0 3px rgba(0,0,0,.18)}
+.vn-vinyl .lab span{display:none}
+.vn-vinyl .lab::before{z-index:1;background:#000;box-shadow:0 0 0 2px #fff}
+.vn-sleeve.art{position:relative;aspect-ratio:1;overflow:hidden;background:var(--bg,#111);color:#fff;padding:0;display:block;box-shadow:0 30px 50px -24px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.06)}
+.vn-sleeve.art img{position:absolute;left:10%;top:12%;width:80%;height:72%;object-fit:contain;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25))}
+.vn-sleeve.art b{position:absolute;left:7%;bottom:6%;font-family:var(--f-wide);font-weight:800;font-stretch:125%;text-transform:uppercase;font-size:clamp(10px,1.3vw,18px);line-height:1}
+.vn-sleeve.art span{position:absolute;right:7%;bottom:6.5%;font-family:var(--f-body);font-size:clamp(8px,.75vw,11px);opacity:.75}
+.vn-sleeve.art::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.12),rgba(255,255,255,0) 40%,rgba(0,0,0,.12));pointer-events:none}
+.vn-head{width:40%}
+.vn-out .vn-sleeve.art{width:min(38vh,300px);height:auto}
+.vn-out .vn-vinyl{height:auto;width:min(35vh,276px)}
+@media (max-width:760px){
+  .vn-set[data-k="a"]{width:42vw}.vn-set[data-k="b"]{left:50vw;width:44vw}
+  .vn-set.gate{left:4vw;width:92vw}.vn-set.gate .vn-sleeve{width:44vw}.vn-set.gate .tr{left:46vw}.vn-set.gate .pile{width:30vw}
+  .vn-set.gate .p1{left:calc(20vw + var(--ex,0) * 8vw);top:30vw}.vn-set.gate .p2{left:calc(50vw + var(--ex,0) * 8vw);top:26vw}
+  .vn-loose[data-k="1"]{width:26vw;left:70vw}.vn-loose[data-k="2"]{width:20vw}.vn-loose[data-k="3"]{width:16vw;left:80vw}
+}
+
+/* ---------------- the phone with the posts ---------------- */
+.ph-sec{padding:12vh 0 0}
+.ph-in{max-width:520px;margin:0 auto 6vh;text-align:center;padding:0 20px}
+.ph-run{height:260vh}
+.ph-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.ph-phone{position:absolute;left:50%;top:50%;height:min(80vh,640px);aspect-ratio:554/1133;transform:translate(-50%,-50%) translateY(calc((1 - min(1, var(--pp,0) * 6)) * 30vh));transition:transform .2s linear}
+.ph-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.ph-screen{position:absolute;left:8.84%;right:8.84%;top:10.24%;bottom:9.18%;overflow:hidden;background:#fff;z-index:1;border-radius:2%}
+.ph-feed{will-change:transform}
+.ph-post{border-bottom:1px solid #eee;padding-bottom:6px}
+.ph-post header{display:flex;align-items:center;gap:6px;padding:6px 8px}
+.ph-post header i{width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,#000,#555)}
+.ph-post header b{font-family:var(--f-wide);font-size:9px;font-weight:600}
+.ph-post header span{margin-left:auto;font-size:8px;color:#999}
+.ph-post img{display:block;width:100%;height:auto}
+.ph-act{display:flex;gap:8px;padding:6px 8px 2px}
+.ph-act svg{width:14px;height:14px;fill:none;stroke:#000;stroke-width:1.6;stroke-linejoin:round}
+.ph-post p{margin:0;padding:2px 8px;font-family:var(--f-wide);font-size:8.5px;line-height:1.35}
+.ph-ico{position:absolute;width:var(--s);height:var(--s);color:#000;rotate:var(--r);transform:translateY(calc(var(--pp,0) * -60vh * var(--sp))) scale(calc(.6 + min(1, var(--pp,0) * 8) * .4));transition:transform .2s linear;z-index:0}
+.ph-ico svg{width:100%;height:100%;fill:currentColor;display:block}
+.ph-ico:nth-child(4n){animation:phpop 2.6s var(--e-io) infinite alternate}
+@keyframes phpop{to{scale:1.25}}
+@media (prefers-reduced-motion:reduce){.ph-ico{animation:none}}
+
+/* Longshot shows the photos in colour */
+.ls-pg .s-q img,.ls-pg .s-stamp img,.lp-pol img,.lp-strip img{filter:none}
+
+/* the closing animation at Longshot's size (it fills most of the screen's height) */
+.ls-home .lh-endf{height:calc(84 * var(--u))!important;width:auto;left:2vw;right:auto;bottom:0}
+.ls-home .lh-endf .ls-fig{height:100%;width:auto}
+.ls-home .lh-letter{left:calc(2vw + 80 * var(--u))}
+/* the motion reel shows the whole frame */
+.ls-vid.big video{aspect-ratio:auto;max-height:none;object-fit:contain;height:auto}

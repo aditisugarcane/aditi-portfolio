@@ -1,0 +1,497 @@
+/* v7: the flower cursor, the lamps, the accent notebook, Illustrating the world, Personal projects, and the new
+   About page (the house of cards and the envelope). */
+
+/* ---------------- the flower trail: drawn behind the normal arrow */
+.fl-trail{position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483600}
+html.fl-cursor,html.fl-cursor body{cursor:auto}
+
+/* ---------------- the lamps */
+.lamp{position:absolute;z-index:3;pointer-events:none;user-select:none;-webkit-user-select:none}
+.lamp img{display:block;width:100%;height:100%;pointer-events:none;-webkit-user-drag:none}
+.lp-base{position:relative;z-index:1}
+.lp-halo{position:absolute;z-index:0;width:300%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%) scale(.55);opacity:0;
+  background:radial-gradient(closest-side,rgba(255,206,120,.62),rgba(255,196,110,.26) 42%,rgba(255,190,110,.08) 68%,rgba(255,190,110,0));
+  transition:opacity .45s ease,transform 1.1s var(--e-out);pointer-events:none}
+.lp-lit{position:absolute;inset:0;z-index:2;opacity:0;transition:opacity .35s ease;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.lp-lit img{filter:brightness(1.22) saturate(1.45) sepia(.12)}
+.lp-lit::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 55% at 50% 30%,rgba(255,244,200,.85),rgba(255,214,120,.35) 55%,rgba(255,200,100,.08));mix-blend-mode:screen}
+.lamp::after{content:"";position:absolute;left:-60%;right:-60%;bottom:-4%;height:12%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,200,110,.5),rgba(255,200,110,0));opacity:0;transition:opacity .6s;pointer-events:none}
+.lamp.on .lp-lit{opacity:1}
+.lamp.on .lp-halo{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.lamp.on::after{opacity:1}
+.lamp.on .lp-base{filter:drop-shadow(0 0 18px rgba(255,200,110,.45))}
+.lamp.flick .lp-lit,.lamp.flick .lp-halo{animation:lpflick .7s linear both}
+@keyframes lpflick{0%{opacity:0}12%{opacity:1}18%{opacity:.25}30%{opacity:.95}36%{opacity:.5}48%,100%{opacity:1}}
+.lamp.on .lp-halo{animation:lpbreathe 4.6s ease-in-out .8s infinite}
+@keyframes lpbreathe{50%{opacity:.86}}
+.lp-cord{position:absolute;z-index:4;pointer-events:auto;cursor:grab;touch-action:none;outline:none;transform-origin:50% 0;
+  transform:rotate(var(--sway,0deg)) scaleY(calc(1 + var(--pull,0) * .6))}
+.lp-cord::before{content:"";position:absolute;inset:-6px -16px -14px}
+.lp-cord.held{cursor:grabbing}
+.lp-cord img,.lp-cord svg{display:block;width:100%;height:100%;transform-origin:50% 0;animation:lpsway 3.4s ease-in-out infinite}
+.lp-cord.held img,.lp-cord.held svg{animation-play-state:paused}
+@keyframes lpsway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+.lp-cord:focus-visible{outline:1.5px dashed currentColor;outline-offset:4px}
+@media (prefers-reduced-motion:reduce){.lp-cord img,.lp-cord svg,.lamp.on .lp-halo{animation:none}.lamp.flick .lp-lit,.lamp.flick .lp-halo{animation:none}}
+/* where they live */
+.lp-tls,.vn-quote,.ab-find,.rs-sec{position:relative}
+@media (max-width:760px){.lp-tls .lamp{display:none}.vn-quote .lamp{height:min(26vh,220px)!important}}
+
+/* ---------------- the accent notes: her handwriting on a real notebook, the tweet pinned up, the two books */
+.nz-desk{position:relative;max-width:1240px;margin:0 auto;padding:2vh 0 4vh;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:2vw;row-gap:4vw;align-items:center}
+.nz-sp{grid-row:1;grid-column:1/9;display:block;padding:0;border:0;background:none;cursor:zoom-in;transform:rotate(var(--tilt));transition:transform .7s var(--e-out),filter .4s;filter:drop-shadow(0 22px 26px rgba(40,30,20,.28))}
+.nz-sp img{display:block;width:100%;height:auto}
+.nz-2{grid-row:2;grid-column:4/13;margin-top:-4vw}
+.nz-3{grid-row:3;grid-column:1/9;margin-top:-3vw}
+.ls-pg .nz-sp[data-r]{transform:translateY(34px) rotate(var(--tilt))}
+.ls-pg .nz-sp[data-r].in{transform:rotate(var(--tilt))}
+.ls-pg .nz-sp[data-r].in:hover{transform:rotate(calc(var(--tilt) * .4)) translateY(-6px)}
+.nz-tweet{grid-row:1;grid-column:9/13;position:relative;margin:0 0 0 1vw;transform:rotate(3deg)}
+.ls-pg .nz-tweet[data-r]{transform:translateY(30px) rotate(3deg)}.ls-pg .nz-tweet[data-r].in{transform:rotate(3deg)}
+.nz-tweet>img:first-child{display:block;width:100%;background:#fff;padding:6px;box-sizing:border-box;box-shadow:0 1px 2px rgba(0,0,0,.18),0 16px 24px -14px rgba(0,0,0,.4)}
+.nz-pin{position:absolute;left:46%;top:-30px;width:44px;transform:rotate(-14deg);filter:drop-shadow(2px 5px 3px rgba(0,0,0,.25))}
+.nz-books{grid-row:3;grid-column:9/13;position:relative;height:clamp(240px,26vw,380px)}
+.nz-book{position:absolute;margin:0;width:58%}
+.nz-book>img:first-child{display:block;width:100%;box-shadow:0 1px 1px rgba(0,0,0,.2),0 18px 26px -14px rgba(0,0,0,.5);border-radius:1px 3px 3px 1px}
+.nz-book.b1{left:0;top:4%;transform:rotate(-7deg)}
+.nz-book.b2{right:0;top:12%;transform:rotate(5deg)}
+.nz-tape{position:absolute;left:-14%;top:-6%;width:62%;transform:rotate(-24deg);opacity:.92}
+.nz-clip{position:absolute;left:38%;top:-15%;width:28%;filter:drop-shadow(1px 4px 3px rgba(0,0,0,.25))}
+.nz-desk>.lamp{grid-row:1;grid-column:9/13;position:relative!important;justify-self:center;align-self:end;right:auto!important;bottom:auto!important}
+.nz-tip{grid-row:2;grid-column:1/4;margin:0;display:flex;justify-content:center;align-self:center}
+.nz-tip img{height:26px;width:auto;opacity:.85}
+.nz-zoom{position:fixed;inset:0;z-index:2147483000;background:rgba(18,18,18,.94);opacity:0;visibility:hidden;transition:opacity .4s var(--e-out),visibility 0s .4s}
+.nz-zoom.on{opacity:1;visibility:visible;transition:opacity .4s var(--e-out)}
+.nz-z-in{position:absolute;inset:0;overflow:auto;display:grid;place-items:center;padding:4vh 3vw;box-sizing:border-box;cursor:zoom-out}
+.nz-z-in img{max-width:96vw;max-height:92vh;width:auto;height:auto;transform:scale(.96);transition:transform .5s var(--e-out)}
+.nz-zoom.on .nz-z-in img{transform:none}
+.nz-x{z-index:2}
+@media (max-width:760px){
+  .nz-desk{grid-template-columns:1fr;row-gap:7vh}
+  .nz-sp,.nz-2,.nz-3,.nz-tweet,.nz-books,.nz-desk>.lamp,.nz-tip{grid-column:1;grid-row:auto;margin:0}
+  .nz-tweet{width:78%;justify-self:center}.nz-books{height:62vw}
+  .nz-desk>.lamp{height:min(30vh,240px)!important;justify-self:end}
+  .nz-z-in{place-items:start}.nz-z-in img{max-width:none;max-height:none;width:230vw}
+}
+/* ---------------- Illustrating the world */
+.sk-sec{position:relative;padding:10vh 10px 0}
+.sk-mos{display:flex;gap:10px;align-items:flex-start;max-width:1560px;margin:0 auto}
+.sk-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:10px;will-change:transform}
+.sk-it{display:block;position:relative;width:100%;padding:0;border:0;background:#f2f2f2;overflow:hidden;cursor:zoom-in;
+  opacity:0;transform:translateY(40px) scale(.98);transition:opacity .9s var(--e-out),transform 1.1s var(--e-out);transition-delay:calc(var(--d,0) * 70ms)}
+.sk-it.in{opacity:1;transform:none}
+.sk-it img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--e-out),filter .5s}
+.sk-it::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 0 #000;transition:box-shadow .3s}
+.sk-it:hover img{transform:scale(1.045)}
+.sk-it:hover::after{box-shadow:none}
+.sk-it:focus-visible{outline:2px solid #000;outline-offset:2px}
+.sk-bar{position:sticky;bottom:26px;z-index:6;display:flex;justify-content:center;margin-top:-56px;padding-bottom:26px;pointer-events:none}
+.sk-open{pointer-events:auto;display:inline-flex;align-items:center;gap:12px;padding:14px 22px 13px;border:0;border-radius:999px;background:#000;color:#fff;font-family:var(--f-wide);font-weight:700;font-size:12px;letter-spacing:.02em;cursor:pointer;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);transition:transform .4s var(--e-out),background .25s}
+.sk-open span{font-family:var(--f-body);font-weight:400;font-size:10.5px;opacity:.6}
+.sk-open:hover{transform:scale(1.05)}
+.sk-lb{position:fixed;inset:0;z-index:2147483000;background:rgba(10,10,10,.97);color:#fff;opacity:0;visibility:hidden;transition:opacity .45s var(--e-out),visibility 0s .45s}
+.sk-lb.on{opacity:1;visibility:visible;transition:opacity .45s var(--e-out)}
+html.sk-lock .ls-pg.on{overflow:hidden}
+.sk-lb-in{position:absolute;left:8vw;right:8vw;top:9vh;bottom:20vh;display:grid;place-items:center}
+.sk-lb-in img{max-width:100%;max-height:100%;object-fit:contain;opacity:0;transform:translateX(var(--dx,0)) scale(.97)}
+.sk-lb-in img.in{animation:skin .6s var(--e-out) both}
+.sk-lb-in img.nx{display:none}
+@keyframes skin{to{opacity:1;transform:none}}
+.sk-lb.on .sk-lb-in img.in{animation-delay:.05s}
+.sk-x{position:absolute;right:24px;top:20px;width:44px;height:44px;border:0;background:none;color:#fff;cursor:pointer;transition:transform .4s var(--e-out)}
+.sk-x:hover{transform:rotate(90deg)}
+.sk-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6}
+.sk-ar{position:absolute;top:calc(50% - 6vh);width:52px;height:52px;border:1px solid rgba(255,255,255,.3);border-radius:50%;background:none;color:#fff;cursor:pointer;display:grid;place-items:center;transition:background .25s,color .25s,border-color .25s}
+.sk-ar:hover{background:#fff;color:#000;border-color:#fff}
+.sk-ar.l{left:2vw}.sk-ar.r{right:2vw}
+.sk-ar svg{width:22px;height:13px;fill:none;stroke:currentColor;stroke-width:1.5}
+.sk-ct,.sk-cap{position:absolute;top:24px;margin:0;font-family:var(--f-body);font-size:11px;letter-spacing:.04em}
+.sk-ct{left:28px}.sk-ct b{font-weight:400}
+.sk-cap{left:50%;transform:translateX(-50%);color:rgba(255,255,255,.55);white-space:nowrap}
+.sk-th{position:absolute;left:0;right:0;bottom:3vh;height:12vh;display:flex;gap:8px;justify-content:safe center;overflow-x:auto;padding:0 20px;scrollbar-width:none}
+.sk-th::-webkit-scrollbar{display:none}
+.sk-th button{flex:none;height:100%;aspect-ratio:1;padding:0;border:0;background:#222;opacity:.35;cursor:pointer;transition:opacity .25s,transform .35s var(--e-out)}
+.sk-th button img{width:100%;height:100%;object-fit:cover;display:block}
+.sk-th button:hover{opacity:.7}
+.sk-th button.on{opacity:1;transform:translateY(-4px)}
+@media (max-width:760px){.sk-lb-in{left:4vw;right:4vw;top:10vh;bottom:18vh}.sk-ar{top:auto;bottom:17vh;width:44px;height:44px}.sk-th{height:9vh}.sk-cap{display:none}}
+
+/* ---------------- Personal projects */
+.pp-sec{height:calc(var(--n) * 100vh);padding:0!important}
+.pp-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column}
+.pp-hd{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:max(84px,11vh) 5vw 0}
+.pp-k{margin:0;font-family:var(--f-wide);font-size:10.5px;font-weight:700;letter-spacing:.08em}
+.pp-ic{display:flex;gap:10px}
+.pp-ic button{width:42px;height:42px;display:grid;place-items:center;border:1.5px solid #000;border-radius:50%;background:#fff;color:#000;cursor:pointer;transition:background .3s,color .3s,transform .4s var(--e-out)}
+.pp-ic button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+.pp-ic button:hover{transform:translateY(-3px)}
+.pp-ic button.on{background:#000;color:#fff}
+.pp-ct{margin:0;font-family:var(--f-body);font-size:11px;min-width:64px;text-align:right}.pp-ct b{font-weight:400}
+.pp-track{flex:1;display:flex;width:calc(var(--n) * 100%);will-change:transform}
+.pp-sl{--d:0;flex:0 0 calc(100% / var(--n));display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:5vw;align-items:center;padding:0 5vw 4vh;box-sizing:border-box}
+.pp-l{transform:translateX(calc(var(--d) * 12vw));opacity:var(--o,1)}
+.pp-im{position:relative;aspect-ratio:16/11;max-height:58vh;margin:0 auto;overflow:hidden;background:#f1f1f1;border-radius:6px;box-shadow:0 26px 50px -30px rgba(0,0,0,.45)}
+.pp-im>*{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .8s var(--e-out),transform 1.4s var(--e-out)}
+.pp-im>.on{opacity:1;transform:none}
+.pp-ph{display:grid;place-items:center;background:repeating-linear-gradient(-45deg,#f4f4f4 0 12px,#fff 12px 24px)}
+.pp-ph span{font-family:var(--f-wide);font-weight:800;font-size:clamp(14px,1.5vw,22px);color:#cfcfcf;text-transform:uppercase}
+.pp-dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.pp-dots button{width:8px;height:8px;padding:0;border:1.5px solid #000;border-radius:50%;background:transparent;cursor:pointer;transition:width .4s var(--e-out),background .3s,border-radius .4s}
+.pp-dots button.on{width:26px;border-radius:5px;background:#000}
+.pp-r{transform:translateX(calc(var(--d) * 26vw));opacity:var(--o2,1)}
+.pp-n{margin:0 0 18px;font-family:var(--f-body);font-size:11px;color:#8c8c8c}
+.pp-t{margin:0 0 14px;font-family:var(--f-wide);font-weight:800;font-stretch:118%;font-size:clamp(30px,3.6vw,58px);line-height:.95;letter-spacing:-.01em;text-transform:uppercase}
+.pp-m{margin:0 0 22px;font-family:var(--f-body);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.pp-m i{font-style:normal;margin:0 8px;opacity:.4}
+.pp-d{margin:0 0 30px;max-width:420px;font-family:var(--f-body);font-size:12.5px;line-height:1.8}
+.pp-b{display:inline-block;color:#000}
+.pp-b:hover{background:#000;color:#fff}
+.pp-b.off{opacity:.4;pointer-events:none}
+.pp-prog{height:2px;margin:0 5vw 4vh;background:#e4e4e4}
+.pp-prog i{display:block;height:100%;background:#000;transform-origin:0 50%;transform:scaleX(.25);transition:transform .2s linear}
+@media (max-width:760px){
+  .pp-sec{height:auto}.pp-stage{position:relative;height:auto;overflow:visible}
+  .pp-hd{flex-wrap:wrap;padding:12vh 20px 4vh}.pp-ct,.pp-prog{display:none}
+  .pp-track{flex-direction:column;width:100%;transform:none!important;gap:12vh;padding-bottom:10vh}
+  .pp-sl{flex:none;grid-template-columns:1fr;gap:26px;padding:0 20px}.pp-l,.pp-r{transform:none;opacity:1}
+}
+
+/* ---------------- About: the name, behind a house of cards */
+.ab-run{height:300vh}
+.ab-stage{--cw:110px;perspective:1300px;perspective-origin:50% 40%}
+.ab-name{line-height:.92;white-space:nowrap;z-index:0;font-size:120px}
+.ab-name span{display:block;padding:.04em .02em 0}
+.ab-pg.play .ab-name span{animation:abrise 1.2s var(--e-out) both}
+.ab-pg.play .ab-name span:last-child{animation-delay:.12s}
+@keyframes abrise{from{transform:translateY(45%);opacity:0}to{transform:none;opacity:1}}
+.ab-deck{position:absolute;left:50%;top:auto;bottom:9vh;width:0;height:0;transform-style:preserve-3d;z-index:1}
+.ab-card{--gx:50%;--gy:30%;--gl:.2;position:absolute;left:calc(var(--cw) / -2);top:calc(var(--cw) * -.7);width:var(--cw);height:calc(var(--cw) * 1.4);transform-style:preserve-3d;will-change:transform;opacity:0;font-size:calc(var(--cw) * .13)}
+.ab-in{position:absolute;inset:0;transform-style:preserve-3d}
+.ab-face,.ab-back{position:absolute;inset:0;border-radius:calc(var(--cw) * .06);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  box-shadow:0 0 0 1px rgba(40,30,20,.28),inset 0 0 0 1px rgba(255,255,255,.5),0 1px 1px rgba(0,0,0,.15)}
+.ab-back{transform:rotateY(180deg);background:#f4efe3}
+.ab-back img{position:absolute;inset:5%;width:90%;height:90%;object-fit:cover;border-radius:calc(var(--cw) * .03)}
+/* the faces */
+.ab-face{background:#f6f1e3;color:#141414;font-family:"Adobe Caslon",Georgia,serif}
+.ab-face.s-h,.ab-face.s-d{color:#a8231b}
+.ab-face::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 10%,rgba(255,255,255,.55),transparent 55%),radial-gradient(100% 80% at 80% 100%,rgba(140,110,60,.16),transparent 60%);pointer-events:none}
+.cf-frame{position:absolute;inset:7%;border:1px solid currentColor;border-radius:calc(var(--cw) * .03);opacity:.55}
+.cf-frame::after{content:"";position:absolute;inset:3px;border:.5px solid currentColor;border-radius:inherit;opacity:.6}
+.cf-c{position:absolute;display:flex;flex-direction:column;align-items:center;line-height:.9;z-index:2;background:#f6f1e3;padding:.15em .12em}
+.cf-c b{font-weight:700;font-size:1.25em;letter-spacing:-.04em}
+.cf-c i{font-style:normal;font-size:.95em;margin-top:.05em}
+.cf-c.tl{left:3%;top:3%}.cf-c.br{right:3%;bottom:3%;transform:rotate(180deg)}
+.cf-orn{position:absolute;left:22%;width:56%;top:13%;height:auto;fill:currentColor;stroke:currentColor;stroke-width:1;fill-opacity:1;opacity:.8}
+.cf-orn path{fill:none}
+.cf-orn.b{top:auto;bottom:13%;transform:rotate(180deg)}
+.cf-win{position:absolute;left:19%;right:19%;top:24%;bottom:24%;border:1px solid currentColor;border-radius:50% 50% 6% 6%/34% 34% 6% 6%;overflow:hidden;background:#fffdf6}
+.cf-win img{width:100%;height:100%;object-fit:cover}
+.cf-pip{position:absolute;left:50%;font-style:normal;font-size:.8em;transform:translateX(-50%)}
+.cf-pip.t{top:19%}.cf-pip.b{bottom:19%;transform:translateX(-50%) rotate(180deg)}
+.cf-ace{position:absolute;inset:16% 12%;display:grid;place-items:center}
+.cf-laurel{position:absolute;width:100%;fill:none;stroke:currentColor;stroke-width:.8;opacity:.7}
+.cf-laurel ellipse{fill:currentColor;stroke:none;opacity:.7}
+.cf-ace b{position:relative;font-size:3.3em;line-height:1;font-weight:400}
+.cf-ace img{position:absolute;width:40%;bottom:-2%;right:-6%;transform:rotate(8deg);filter:drop-shadow(0 2px 2px rgba(0,0,0,.2))}
+.cf-court{position:absolute;inset:12% 12%;display:flex;flex-direction:column;border:1px solid currentColor;overflow:hidden;background:#fffdf6}
+.cf-court span{flex:1;overflow:hidden;display:grid;place-items:center;background:linear-gradient(180deg,rgba(168,35,27,.07),transparent)}
+.cf-court span img{width:115%;height:115%;object-fit:cover}
+.cf-court span:last-of-type{transform:rotate(180deg);border-bottom:1px solid currentColor}
+.cf-court em{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:.05em .45em;font-size:.62em;letter-spacing:.14em;text-transform:uppercase;font-style:italic;background:#f6f1e3;border:1px solid currentColor;white-space:nowrap}
+/* bencho's texture and shine: a fine grain, and a light that follows the turn of the card */
+.cf-gl{position:absolute;inset:0;pointer-events:none;z-index:5;mix-blend-mode:soft-light;
+  background:radial-gradient(60% 45% at var(--gx) var(--gy),rgba(255,255,255,calc(var(--gl) * 1.8)),rgba(255,255,255,0) 70%),
+    linear-gradient(115deg,transparent calc(var(--gx) - 30%),rgba(255,255,255,calc(var(--gl) * .9)) var(--gx),transparent calc(var(--gx) + 30%)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.ab-back .cf-gl{mix-blend-mode:overlay}
+.ab-hint{z-index:2}
+@media (max-width:760px){.ab-run{height:240vh}.ab-deck{bottom:14vh}}
+
+/* ---------------- About: the envelope */
+.ab-find{padding-bottom:4vh}
+.ab-find>.lamp{z-index:1}
+.ab-tap{margin:-6px 0 0;font-family:var(--f-body);font-style:italic;font-size:10.5px;color:#6b6b6b;transition:opacity .5s}
+.ab-tap.gone{opacity:0}
+.ev-defs{position:absolute;width:0;height:0}
+.ev{position:relative;width:min(520px,84vw);aspect-ratio:400/250;margin:30vh auto 6vh;cursor:pointer;perspective:1200px;outline:none;-webkit-tap-highlight-color:transparent}
+.ev:focus-visible{outline:1.5px dashed #000;outline-offset:10px}
+.ev svg{display:block;width:100%;height:100%;overflow:visible}
+.ev-back,.ev-front,.ev-flap,.ev-letter{position:absolute;left:0;right:0}
+.ev-back{inset:0;z-index:1;filter:drop-shadow(0 20px 22px rgba(60,40,20,.22))}
+.ev-front{inset:0;z-index:4;pointer-events:none}
+.ev-flap{top:0;height:62.4%;z-index:5;transform-origin:50% 0;transition:transform .7s cubic-bezier(.5,0,.2,1),z-index 0s .35s;transform-style:preserve-3d}
+.ev-letter{left:6%;right:6%;top:4%;height:92%;z-index:2;transition:transform 1s cubic-bezier(.3,0,.1,1)}
+.ev-paper{height:100%;box-sizing:border-box;padding:7% 8% 6%;background:#fffdf7;text-align:left;font-family:"Belmonte","Gaegu",cursive;color:#2a2a2a;font-size:clamp(15px,2.1vw,19px);line-height:1.45;
+  background-image:repeating-linear-gradient(180deg,transparent 0 calc(1.45em - 1px),rgba(70,70,70,.13) calc(1.45em - 1px) 1.45em);background-position:0 calc(7% + .2em);
+  box-shadow:0 0 0 1px rgba(61,58,54,.4),0 8px 18px -10px rgba(0,0,0,.4);clip-path:inset(0 round 2px)}
+.ev-hi{margin:0;font-size:1.25em}
+.ev-p{margin:0 0 .3em;font-size:.86em}
+.ev-ul{list-style:none;margin:0;padding:0}
+.ev-ul li{display:flex;gap:.6em;align-items:baseline}
+.ev-ul .k{width:5.2em;flex:none;font-size:.82em;color:#a8231b}
+.ev-ul a{color:#1d3b8f;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.ev-ul a:hover{text-decoration-style:wavy}
+.ev-ul .ph{font-family:var(--f-body);font-size:.6em}
+.ev-sig{margin:.2em 0 0;text-align:right;font-size:1.15em}
+.ev-seal{position:absolute;left:50%;top:60.5%;width:16%;aspect-ratio:1;z-index:6;transform:translate(-50%,-50%);transition:transform .5s cubic-bezier(.3,1.6,.5,1),opacity .4s .25s;filter:drop-shadow(0 3px 3px rgba(60,10,5,.35))}
+.ev:hover .ev-seal{transform:translate(-50%,-50%) rotate(-6deg) scale(1.06)}
+.ev:not(.s1):hover .ev-flap{transform:rotateX(14deg)}
+/* opening, in four steps */
+.ev.s1 .ev-seal{transform:translate(-50%,40%) rotate(-40deg) scale(.6);opacity:0;transition:transform .55s cubic-bezier(.5,-0.4,.7,1),opacity .35s .2s}
+.ev.s2 .ev-flap{transform:rotateX(180deg);z-index:0}
+.ev.s3 .ev-letter{transform:translateY(-78%)}
+.ev.s4 .ev-letter{z-index:7;transform:translateY(-58%) scale(1.04) rotate(-1.2deg);transition:transform .9s var(--e-out)}
+.ev.s4{cursor:default}
+.ev-burst{position:absolute;left:50%;top:20%;width:0;height:0;z-index:8;pointer-events:none}
+.eb{position:absolute;left:-14px;top:-10px;width:28px;will-change:transform}
+.eb.fl{left:-26px;top:-30px;width:52px}
+.eb svg{display:block;width:100%;height:auto;overflow:visible}
+.ab-av{position:relative;z-index:2}
+@media (max-width:760px){.ev{margin-top:26vh}.ab-find>.lamp{left:auto!important;right:2vw;height:min(36vh,300px)!important;bottom:2vh!important}}
+@media (prefers-reduced-motion:reduce){.ev-flap,.ev-letter,.ev-seal{transition:none}}
+
+/* ---------------- Illustrating the world, until the paintings arrive: empty frames, and her brushes */
+.sk-ph{display:grid;place-items:center;cursor:default;background:#f6f4ef;
+  background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(0,0,0,.025) 0 1px,transparent 1px 3px);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.06),inset 0 0 40px rgba(120,100,70,.08)}
+.sk-ph span{font-family:var(--f-wide);font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#b9b4aa}
+.sk-sec{overflow:hidden}
+.sk-deco{position:absolute;z-index:4;height:auto;pointer-events:none;filter:drop-shadow(6px 14px 12px rgba(0,0,0,.2))}
+.sk-deco.pal{left:1vw;top:12vh;width:clamp(120px,14vw,220px);rotate:-14deg}
+.sk-deco.jar{right:1.5vw;top:38%;width:clamp(100px,10vw,170px);rotate:4deg}
+.sk-painter{position:relative;z-index:5;margin:10vh auto 0;width:min(46vw,440px)}
+.sk-painter img{display:block;width:100%;height:auto}
+.sk-soon{position:relative;z-index:5;margin:3vh 0 0;padding-bottom:12vh;text-align:center;font-family:var(--f-body);font-style:italic;font-size:11px;color:#6b6b6b}
+@media (max-width:760px){.sk-deco.pal{width:96px;top:6vh}.sk-deco.jar{width:80px}.sk-painter{width:78vw}}
+
+/* the "pull me down" note beside each lamp chain */
+img.lp-hint{position:absolute;z-index:5;height:clamp(15px,1.3vw,20px);width:auto;max-width:none;pointer-events:none;opacity:0;transition:opacity .6s;animation:lphint 2.8s ease-in-out infinite}
+.lamp .lp-hint{width:auto;height:clamp(15px,1.3vw,20px)}
+.ls-pg.on .lamp:not(.used) .lp-hint,.ab-pg.on .lamp:not(.used) .lp-hint{opacity:.9;transition-delay:1.2s}
+@keyframes lphint{0%,100%{translate:0 0}50%{translate:0 3px}}
+@media (prefers-reduced-motion:reduce){img.lp-hint{animation:none}}
+
+/* the pink glow, only on the square frames of Illustrating the world and Personal projects, and on the notebooks */
+html.fl-cursor :is(.sk-ph,.sk-it,.pp-im){transition:box-shadow .35s ease}
+html.fl-cursor :is(.sk-ph,.sk-it,.pp-im):hover{box-shadow:0 0 0 3px #ffd0f2,0 0 14px 5px rgba(255,90,205,.6),0 0 34px 8px rgba(255,90,205,.28)}
+html.fl-cursor .nz-sp:hover{filter:drop-shadow(0 0 2px #ffc2ee) drop-shadow(0 0 10px rgba(255,90,205,.7)) drop-shadow(0 22px 26px rgba(40,30,20,.25))}
+
+/* ---------------- the new card faces: rank and suit corners, swashes, suit motifs; ranks blur from one to the next */
+.ab-face{background:#fbf8f0}
+.ab-face::before{z-index:3}
+.cf-l{position:absolute;inset:0;opacity:0;filter:blur(7px);transform:scale(1.04);transition:opacity .36s ease,filter .5s ease,transform .5s var(--e-out)}
+.cf-l.on{opacity:1;filter:blur(0);transform:none}
+.cf-l.off{opacity:0;filter:blur(9px);transform:scale(.97)}
+.cf-svg{display:block;width:100%;height:100%}
+.ab-card{cursor:pointer}
+@media (prefers-reduced-motion:reduce){.cf-l{transition:opacity .2s;filter:none;transform:none}}
+
+/* ---------------- the phonograph on the music page */
+.phono{position:absolute;z-index:3;aspect-ratio:550/560;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
+.phono:focus-visible{outline:1.5px dashed #000;outline-offset:6px}
+.ph-img{display:block;width:100%;height:100%;transform-origin:50% 100%;transition:transform .5s var(--e-out)}
+.phono:hover .ph-img{transform:rotate(-1.5deg) scale(1.02)}
+.phono.play .ph-img{animation:phbop .45s ease-in-out infinite}
+@keyframes phbop{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.025,.985) rotate(-1deg)}}
+.ph-horn{transform-origin:212px 152px;transform-box:view-box;transition:transform .5s var(--e-out)}
+.phono:hover .ph-horn{transform:rotate(-3deg)}
+.phono.play .ph-horn{animation:phwob .6s ease-in-out infinite}
+@keyframes phwob{0%,100%{transform:rotate(-2deg) scale(1)}50%{transform:rotate(1.5deg) scale(1.03)}}
+.ph-shine{animation:phsh 1.6s linear infinite paused}
+.phono.play .ph-shine{animation-play-state:running}
+@keyframes phsh{0%{transform:translateX(-42px)}50%{transform:translateX(42px)}100%{transform:translateX(-42px)}}
+.ph-notes{position:absolute;left:24%;top:30%;width:0;height:0;pointer-events:none}
+.ph-n{position:absolute;width:18px;height:20px;animation:phn 2.5s var(--e-out) forwards}
+.ph-n svg{width:100%;height:100%;overflow:visible}
+@keyframes phn{0%{opacity:0;transform:translate(0,0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(1.1)}}
+.ph-hint{position:absolute;left:96%;top:8%;height:clamp(15px,1.3vw,20px);width:auto;opacity:.9;transition:opacity .6s;animation:lphint 2.8s ease-in-out infinite;pointer-events:none}
+.phono.used .ph-hint{opacity:0}
+@media (max-width:760px){.vn-quote{padding-bottom:30vh!important}.phono{height:min(22vh,180px)!important;bottom:2vh!important;left:4vw!important}.ph-hint{left:70%;top:-14%}.vn-quote .lamp{height:min(24vh,200px)!important}.vn-quote .ls-splash{display:none}}
+@media (prefers-reduced-motion:reduce){.phono.play .ph-horn,.ph-hint{animation:none}}
+
+/* ---------------- the old computer with Roberto Cavalli's tweet, and the pixel note that pulls out of it */
+@font-face{font-family:"Pixelify Sans";src:url(../fonts/pixelify-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Pixelify Sans";src:url(../fonts/pixelify-700.woff2) format("woff2");font-weight:700;font-display:swap}
+.rc-wrap{position:relative;max-width:1100px;margin:0 auto 6vh;height:clamp(330px,40vw,520px)}
+.rc{position:absolute;left:4%;top:0;width:clamp(330px,46vw,580px);aspect-ratio:500/443;z-index:3}
+.rc-gif{display:block;width:100%;height:100%;image-rendering:pixelated;cursor:pointer}
+.rc-scr{position:absolute;left:42.9%;top:15.9%;width:16.9%;height:18.6%;padding:0;border:0;background:#fff;transform:skewY(26.5deg);transform-origin:0 0;overflow:hidden;cursor:zoom-in}
+.rc-page{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;background:#fff}
+.rc-url{position:absolute;left:0;right:0;top:0;height:9%;background:#c0c0c0;border-bottom:1px solid #808080}
+.rc-page img{display:block;width:100%;height:auto;image-rendering:auto}
+.rc-scr::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.08) 0 1px,transparent 1px 3px),radial-gradient(120% 100% at 30% 20%,rgba(255,255,255,.25),transparent 60%);pointer-events:none}
+.rc-bar{display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 12px;background:#ff8ad8;border-bottom:3px solid #141414;font-weight:700;font-size:15px}
+.rc-x{width:22px;height:22px;border:0;padding:0;background:#fff;box-shadow:0 0 0 2px #141414;font:700 14px/22px "Pixelify Sans";cursor:pointer}
+.rc-x:hover{background:#141414;color:#fff}
+.rc-body{padding:14px 16px 16px;font-size:15px;line-height:1.35}
+.rc-body p{margin:0 0 10px}
+.rc-h{font-weight:700;font-size:19px}
+.rc-k{font-weight:700;color:#d6248f}
+.rc-tab{position:absolute;z-index:5;left:calc(4% + clamp(330px,46vw,580px) * .8);top:26%;display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:8px 12px;border:0;background:#ff8ad8;box-shadow:0 0 0 3px #141414,5px 5px 0 3px #141414;font-family:"Pixelify Sans";color:#141414;cursor:pointer;text-align:left;animation:pctab 1.6s steps(2) infinite}
+.rc-tab span{font-weight:700;font-size:15px}.rc-tab b{font-weight:400;font-size:12px}
+@keyframes pctab{50%{translate:4px 0}}
+.rs-lede{max-width:640px;margin:0 auto 8vh;text-align:center;font-family:var(--f-cap);font-size:clamp(20px,2vw,28px);line-height:1.3}
+@media (max-width:760px){
+  .rc-wrap{height:auto!important;padding-bottom:4vh;display:flex;flex-direction:column}
+  .rc{position:relative;left:0;width:100%}
+  .rc-tab{position:relative;left:auto;top:auto!important;margin:8px 6vw 0;width:calc(100% - 12vw);animation:none;flex-direction:row;justify-content:space-between;align-items:center}
+}
+
+/* the circle animation (the lens) is taller than its own frame, so its top and bottom were cut flat: fade it into a clean circle */
+.ls-fig:has(img[src$="lens.gif"]) .tf{-webkit-mask-image:radial-gradient(circle closest-side,#000 88%,transparent 100%);mask-image:radial-gradient(circle closest-side,#000 88%,transparent 100%)}
+/* the animations drawn on black don't get the light/shadow sheet when tilted, so their square edges never show */
+.lh-f.blend .ls-fig .sh,.ls-fig:has(img[src$="lens.gif"]) .sh{display:none}
+
+/* the comment wall: only comments, all in the same type, in loose columns */
+.cw-wall.cw-cols{height:auto;columns:3 300px;column-gap:28px}
+.cw-cols .cw-c{position:relative;left:auto;top:auto;width:100%;box-sizing:border-box;display:inline-block;margin:0 0 28px;break-inside:avoid;transform:rotate(var(--tilt))}
+.ls-pg .cw-cols .cw-c[data-r]{transform:translateY(26px) rotate(var(--tilt))}
+.ls-pg .cw-cols .cw-c[data-r].in{transform:rotate(var(--tilt))}
+.cw-cols .cw-c:nth-child(3n+2){margin-top:46px}
+.cw-cols .cw-c p{font-size:16px;font-weight:400;text-transform:none;line-height:1.38}
+/* her comic in the note frame, shown whole and in colour */
+.lp-pol img.lp-comic{aspect-ratio:auto;object-fit:contain;filter:none}
+/* the computer's two windows: the tweet and the idea, each pulled out by its own tab */
+.rc-win{position:absolute;left:30%;width:clamp(280px,34vw,420px);z-index:2;font-family:"Pixelify Sans",var(--f-body);color:#141414;background:#fff;
+  box-shadow:0 0 0 3px #141414,6px 6px 0 3px #141414;opacity:0;transform:translateX(0) scale(.96);clip-path:inset(-12px 100% -12px -12px);
+  transition:transform .75s cubic-bezier(.22,1,.36,1),clip-path .75s cubic-bezier(.22,1,.36,1),opacity .3s,z-index 0s .75s}
+.rc-win.open{opacity:1;transform:translateX(clamp(200px,24vw,270px)) scale(1) rotate(1deg);clip-path:inset(-12px -12px -12px -12px);z-index:4;transition:transform .75s cubic-bezier(.22,1,.36,1),clip-path .75s cubic-bezier(.22,1,.36,1),opacity .2s,z-index 0s}
+.rc-win.rc-tw{top:0}.rc-win.rc-note{top:30%}
+.rc-win.rc-tw.open{transform:translateX(clamp(200px,24vw,270px)) scale(1) rotate(-1deg)}
+.rc-tw .rc-body{padding:10px}
+.rc-tw .rc-body img{display:block;width:100%;height:auto;box-shadow:0 0 0 2px #141414}
+.rc-win:not(.open){pointer-events:none}
+.rc-tab{transition:opacity .3s,translate .3s}
+.rc-tab.t1{top:12%}.rc-tab.t2{top:34%}
+.rc-tab.out{opacity:0;pointer-events:none;animation:none}
+.rc-wrap{height:clamp(380px,44vw,560px)}
+@media (max-width:760px){
+  .rc-win{position:relative;left:0;top:0!important;width:auto;margin:10px 6vw 0;transform:none!important;clip-path:none;opacity:1;display:none}
+  .rc-win.open{display:block}
+  .rc{order:1}.rc-tab.t1{order:2}.rc-tw{order:3}.rc-tab.t2{order:4}.rc-note{order:5}
+  .rc-tab{margin:8px 6vw 0}
+  .rc-tab.out{display:none}
+}
+@media (prefers-reduced-motion:reduce){.rc-win,.rc-win.open{transition:opacity .2s}}
+
+/* pages with a big opening drawing: the side note sits under the drawing, never behind it */
+.lp-stick .ls-in-s{z-index:2}
+@media (min-width:761px){
+  .lp-stick .ls-in-f.big{height:min(62vh,calc(72vw / var(--ar,1)),86vw);bottom:18vh}
+  .lp-stick:has(.ls-in-f.big) .ls-in-s{top:auto;bottom:5vh;max-width:280px}
+}
+@media (max-width:760px){
+  .lp-stick .ls-in-f.big{bottom:24vh;height:min(44vh,calc(88vw / var(--ar,1)))}
+}
+@media (min-width:761px){ .lp-stick:has(.ls-in-f.big) .ls-in-k{max-width:160px} }
+.lh-letter a[data-card]{cursor:pointer}
+/* the letter's sign-off (an older .sig rule from the first intro was hiding it) */
+.lh-letter .sig{display:block;opacity:1;transform:none;font-size:inherit;text-shadow:none;margin-top:2em}
+@media (min-width:761px){
+  .rc-win.rc-note{top:3%}
+  .rc-note .rc-body{font-size:14px;line-height:1.32}
+  .rc-wrap{height:clamp(470px,44vw,580px)}
+}
+.ph-post.re header i{background:linear-gradient(135deg,#ff8ad8,#d6248f)}
+.ph-post .ph-re{color:#8c8c8c;padding-top:0}
+
+/* the envelope is Maori Sakai's drawing, played frame by frame. The letter sits between the back of the
+   envelope and its front pocket, so it rises out of it together with the flowers */
+.ev{width:min(480px,84vw);aspect-ratio:549/569;margin:30vh auto 8vh;perspective:none;position:relative}
+.ev-art{position:absolute;inset:0;background:url(../media/env/closed.webp) 0 0/100% 100% no-repeat;z-index:1;transition:transform .45s var(--e-out);pointer-events:none}
+.ev-art.ev-run{background-image:url(../media/env/sheet.webp);background-size:600% 500%}
+.ev-front{z-index:3;clip-path:polygon(33.8% 71.2%,67.4% 71.2%,88.4% 99.6%,12.2% 99.6%)}
+.ev:not(.s1):hover .ev-art{transform:rotate(-1.5deg) scale(1.02)}
+.ev-slot{position:absolute;left:16%;right:16%;top:0;bottom:1%;z-index:2;clip-path:inset(-300% -40% 0 -40%);pointer-events:none}
+.ev .ev-letter,.ev.s3 .ev-letter,.ev.s4 .ev-letter{position:absolute;left:0;right:0;top:auto;bottom:14%;height:auto;margin:0;z-index:auto;display:block;opacity:1;
+  transform:translateY(calc(100% - 0%));transition:transform 1.5s cubic-bezier(.22,.9,.28,1)}
+.ev .ev-letter{transform:translateY(105%)}
+.ev.s3 .ev-letter{transform:translateY(0) rotate(-1.2deg);pointer-events:auto}
+.ev .ev-letter>.ev-paper{height:auto;overflow:visible;padding:7% 8% 22%;font-size:clamp(12px,1.25vw,15px);box-shadow:0 10px 24px -14px rgba(60,40,20,.45),0 0 0 1px rgba(61,58,54,.25)}
+.ev.s1{cursor:default}
+.ab-cols.one{grid-template-columns:1fr;max-width:640px;margin-left:auto;margin-right:auto}
+/* keep the opening titles clear of the drawings either side */
+@media (min-width:761px){ .lp-head .lp-title{max-width:min(900px,58vw)} .lp-head .lp-body{max-width:min(560px,54vw);margin-left:auto;margin-right:auto} }
+/* the closing letter on the home strip: a touch smaller, centred, and always fully on screen */
+.ls-home .lh-letter{top:50%;transform:translateY(-50%);font-size:10.5px;line-height:1.7;text-align:center;max-height:92vh}
+.ls-home .lh-letter p{margin-bottom:1em}
+.ls-home .lh-letter .sig{margin-top:1.4em}
+.ls-home .lh-letter .lh-endb{justify-content:center;margin-top:1.4em}
+@media (max-width:760px){.ls-home .lh-letter{top:52%;font-size:10px;line-height:1.6}}
+/* the worm keeps crawling, without the long track behind it */
+.fx-worm .tr{display:none}
+.ev-art{mix-blend-mode:normal}
+@media (max-width:760px){.ab-av{padding-right:20vw}}
+
+/* ---- real records on the music page ---- */
+.vn-sleeve.rec{padding:0;display:block;overflow:hidden;background:#ddd;box-shadow:0 30px 50px -24px rgba(0,0,0,.55),inset 0 0 0 1px rgba(0,0,0,.08)}
+.vn-sleeve.rec img{display:block;width:100%;height:100%;object-fit:cover}
+.vn-sleeve.rec::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.14),rgba(255,255,255,0) 38%,rgba(0,0,0,.08));pointer-events:none}
+.vn-vinyl.rec{background:none;box-shadow:0 24px 40px -18px rgba(0,0,0,.55)}
+.vn-vinyl.rec::after{content:none}
+.vn-vinyl.rec .vd,.vn-vinyl.rec .gl{position:absolute;inset:0;border-radius:50%}
+.vn-vinyl.rec .vd{background:center/100% 100% no-repeat}
+/* the light on the vinyl: two soft wedges of shine and the fine grooves, fixed while the disc turns */
+.vn-vinyl.rec .gl{pointer-events:none;mix-blend-mode:screen;
+  background:
+    radial-gradient(circle,transparent 0 33%,rgba(255,255,255,.06) 33.5%,transparent 35%),
+    repeating-radial-gradient(circle,rgba(255,255,255,0) 0 1.3px,rgba(255,255,255,.035) 1.7px 2.1px),
+    conic-gradient(from 18deg,transparent 0 6%,rgba(255,255,255,.34) 10%,rgba(255,255,255,.06) 15%,transparent 20% 50%,rgba(255,255,255,.26) 60%,rgba(255,255,255,.05) 65%,transparent 70%);
+  -webkit-mask:radial-gradient(circle,transparent 0 30%,#000 31% 99%,transparent 100%);mask:radial-gradient(circle,transparent 0 30%,#000 31% 99%,transparent 100%)}
+.vn-set .vn-vinyl.slide.l.rec .gl,.vn-set.gate .p2.rec .gl{rotate:var(--rot,0deg)}
+.vn-set .vn-vinyl.slide.r.rec .gl,.vn-set.gate .p1.rec .gl,.vn-loose .vn-vinyl.rec .gl{rotate:calc(var(--rot,0deg) * -1)}
+.vn-head.rec .vd,.vn-vinyl.out.rec .vd{animation:spin 3.2s linear infinite}
+.vn-head.rec .vd{animation-duration:2.4s}
+.vn-mix{margin:14px 0 0;text-align:center;font-family:var(--f-body);font-size:11px;color:#6b6b6b}
+@media (prefers-reduced-motion:reduce){.vn-vinyl.rec .vd{animation:none!important}}
+/* the envelope, round three: the whole front of the envelope (both side flaps and the bottom pocket) sits over the letter,
+   so the letter rises from inside it, through the open mouth, and the writing is bigger */
+.ev-front{clip-path:polygon(12.4% 51%,17.5% 55.5%,26.6% 60%,30.4% 65%,31.8% 70%,33% 72.8%,68.6% 72.8%,66.5% 70%,69.8% 65%,74.1% 60%,80% 55.5%,87.8% 51%,87.8% 100%,12.4% 100%)}
+.ev-slot{left:14.5%;right:14.5%;bottom:0}
+.ev .ev-letter,.ev.s3 .ev-letter,.ev.s4 .ev-letter{bottom:31%;transition:transform 1.7s cubic-bezier(.25,.8,.3,1)}
+.ev .ev-letter{transform:translateY(112%)}
+.ev.s3 .ev-letter{transform:translateY(0) rotate(-1deg)}
+.ev .ev-letter>.ev-paper{padding:7% 8% 30%;font-size:clamp(16px,1.75vw,21px);line-height:1.4}
+.ev .ev-p{font-size:.92em}
+.ev .ev-ul .k{width:4.6em;font-size:.86em}
+.ev .ev-ul a{font-size:.95em;word-break:break-word}
+@media (max-width:760px){.ev{width:min(480px,92vw)}.ev .ev-letter>.ev-paper{font-size:17px;padding:7% 7% 30%}.ev .ev-ul li{flex-wrap:wrap;gap:0 .6em}.ev .ev-ul .k{width:auto}}
+.ev .ev-ul li{display:block;margin:.35em 0 0}.ev .ev-ul .k{display:block;width:auto;font-size:.78em;line-height:1.1}.ev .ev-ul a{white-space:nowrap;word-break:normal}
+/* the music player: one track, the waveform fills in as it plays and you can click it to jump */
+.vn-card .vn-wave{cursor:pointer}
+.vn-card .vn-wave i,.vn-card .vn-wave i:nth-child(-n+18){background:#cfcfcf}
+.vn-card .vn-wave i.on{background:#000}
+.vn-card .vn-wave:hover i:not(.on){background:#b4b4b4}
+.vn-tm{display:flex;justify-content:space-between;margin:0;font-family:var(--f-body);font-size:10px;color:#8c8c8c}
+.vn-card.playing .vn-add{display:none}
+a.vn-out{color:inherit;text-decoration:none;cursor:pointer}
+/* the player: her Cold Shoulder mix plays; the other tracks are listed, not playable */
+.vn-card .vn-now span,.vn-tm,.vn-why,.vn-also,.vn-list.still li{font-family:var(--f-wide)}
+.vn-card .vn-now span{font-size:11px;letter-spacing:0}
+.vn-why{margin:14px 0 0;font-size:13px;line-height:1.45;color:#3a3a3a}
+.vn-also{margin:22px 0 8px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#8c8c8c}
+.vn-list.still li{cursor:default;font-size:12.5px;color:#555}
+.vn-list.still li:hover{background:none;padding-left:2px}
+.vn-list.still .sd{background:#e6e6e6;color:#555}
+/* phones: the logo, page name and button step aside while you read down a page */
+@media (max-width:760px){
+  .mark,.ls-slug,.ls-cta{transition:opacity .3s,transform .4s var(--e-out),background .25s,color .25s}
+  html.ls-head-off .mark,html.ls-head-off .ls-slug{transform:translateY(-140%);opacity:0!important;pointer-events:none}
+  html.ls-head-off .ls-cta.on{transform:translateY(160%);opacity:0;pointer-events:none}
+}
+/* the info and contact links stay readable over the white drawings on the home strip */
+.ls-fl{text-shadow:0 0 3px #000,0 0 8px #000,0 0 14px rgba(0,0,0,.8)}
+/* phones: "Animator & motion designer" sits clear of the drone in the opening drawing */
+@media (max-width:760px){.ls-home .lh-role{left:20px!important;transform:none}}
+/* films: the director's note fades out first, so its words never sit over the discs as they show through */
+.fi-pg .lp-note{opacity:clamp(0,calc(1 - var(--fo,0) * 3),1)}
+@media (max-width:760px){.fi-skip{transition:opacity .3s,transform .4s var(--e-out)}html.ls-head-off .fi-skip{transform:translateY(160%);opacity:0;pointer-events:none}}
+/* phones: the lamp by the envelope stands smaller, below the letter and clear of the availability note */
+@media (max-width:760px){.ev{width:min(480px,86vw)}.ab-find>.lamp{height:min(24vh,190px)!important;right:1vw!important;bottom:1vh!important}.ab-av{padding-right:26vw}}
+/* the envelope's butterfly, out in front of the letter */
+.ev-fly{position:absolute;left:0;top:0;width:19.1%;aspect-ratio:105/94;z-index:9;pointer-events:none;opacity:0;will-change:transform}
+.ev-fly.on{opacity:1}
+.ev-fly img{position:absolute;left:50%;top:50%;translate:-50% -50%;display:block;height:auto;filter:drop-shadow(0 3px 3px rgba(60,40,20,.18))}
+.ev-fly .o{width:100%}
+.ev-fly .s{width:53.3%;opacity:0}
+.ev-fly.shut .o{opacity:0}.ev-fly.shut .s{opacity:1}

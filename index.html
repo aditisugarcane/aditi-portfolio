@@ -274,12 +274,13 @@ body.proj .cds{display:block}
 .cd-stage{position:absolute;inset:0;perspective:1500px;perspective-origin:52% 44%;touch-action:pan-y;cursor:grab}
 .cd-stage.drag{cursor:grabbing}
 .cd{position:absolute;left:52%;top:50%;width:var(--d);height:var(--d);margin:calc(var(--d) / -2) 0 0 calc(var(--d) / -2);border-radius:50%;transform-style:preserve-3d;cursor:pointer;will-change:transform;outline:none}
-.cd span{position:absolute;inset:0;border-radius:50%;-webkit-mask:var(--m) center/100% 100% no-repeat;mask:var(--m) center/100% 100% no-repeat}
+.cd span{position:absolute;inset:0;border-radius:50%;-webkit-mask:radial-gradient(closest-side,transparent 11.6%,#000 12.3%);mask:radial-gradient(closest-side,transparent 11.6%,#000 12.3%)}
+#cdStage{transition:opacity .7s ease}#cdStage.loading{opacity:0}
 .cd .e1,.cd .e2{background:linear-gradient(135deg,#d9dadd,#8e9095 45%,#c9cbcf 70%,#7c7e83)}
 .cd .e1{transform:translateZ(-2px)}.cd .e2{transform:translateZ(-4px);filter:brightness(.8)}
-.cd .fc{background:var(--m) center/100% 100% no-repeat;-webkit-mask:none;mask:none;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cd .fc{background:center/100% 100% no-repeat;-webkit-mask:none;mask:none;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .cd .bk{transform:translateZ(-5px) rotateY(180deg);background:url(media/cds/disc-back.webp) center/100% 100% no-repeat;-webkit-mask:none;mask:none;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.cd .lt{transform:translateZ(.6px);-webkit-mask:var(--m) center/100% 100% no-repeat;mask:var(--m) center/100% 100% no-repeat;background:radial-gradient(120% 90% at 22% 12%,rgba(255,255,255,.14),rgba(255,255,255,0) 55%),radial-gradient(90% 70% at 85% 95%,rgba(0,0,0,.12),rgba(0,0,0,0) 60%);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cd .lt{transform:translateZ(.6px);background:radial-gradient(120% 90% at 22% 12%,rgba(255,255,255,.14),rgba(255,255,255,0) 55%),radial-gradient(90% 70% at 85% 95%,rgba(0,0,0,.12),rgba(0,0,0,0) 60%);backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .cd .sh{transform:translateZ(.5px);opacity:.3;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:linear-gradient(var(--sa,115deg),rgba(255,255,255,0) 30%,rgba(255,255,255,.55) 46%,rgba(255,255,255,0) 58%,rgba(255,255,255,0) 72%,rgba(255,255,255,.22) 80%,rgba(255,255,255,0) 88%);background-size:220% 220%;background-position:var(--sx,50%) var(--sy,50%)}
 .cd:focus-visible .fc{box-shadow:0 0 0 3px #1f2ad8}
 .cd-scrib{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;overflow:visible}
@@ -328,10 +329,10 @@ body.proj .cds{display:block}
 .nx.go .wd{transform:translateX(calc(var(--dir) * 130vw));transition:transform .9s cubic-bezier(.7,0,.25,1)}
 .nx .stage3{position:absolute;left:0;right:0;bottom:0;height:100%;perspective:1600px;perspective-origin:50% 100%;pointer-events:none}
 .nx .disc{position:absolute;left:50%;bottom:0;width:var(--nd);height:var(--nd);margin-left:calc(var(--nd) / -2);border-radius:50%;transform-style:preserve-3d;will-change:transform;pointer-events:auto;--nd:min(44vw,640px)}
-.nx .disc span{position:absolute;inset:0;border-radius:50%;-webkit-mask:var(--m) center/100% 100% no-repeat;mask:var(--m) center/100% 100% no-repeat}
+.nx .disc span{position:absolute;inset:0;border-radius:50%;-webkit-mask:radial-gradient(closest-side,transparent 11.6%,#000 12.3%);mask:radial-gradient(closest-side,transparent 11.6%,#000 12.3%)}
 .nx .disc .e1,.nx .disc .e2,.nx .disc .e3{background:linear-gradient(135deg,#e2e3e6,#8e9095 40%,#d3d5d9 62%,#73757a)}
 .nx .disc .e1{transform:translateZ(-2px)}.nx .disc .e2{transform:translateZ(-4px);filter:brightness(.85)}.nx .disc .e3{transform:translateZ(-6px);filter:brightness(.7)}
-.nx .disc .fc{background:var(--m) center/100% 100% no-repeat;-webkit-mask:none;mask:none}
+.nx .disc .fc{background:center/100% 100% no-repeat;-webkit-mask:none;mask:none}
 .nx .disc .sh{transform:translateZ(.5px);opacity:.7;background:linear-gradient(var(--sa,105deg),rgba(255,255,255,0) 28%,rgba(255,255,255,.6) 44%,rgba(255,255,255,0) 56%,rgba(255,255,255,0) 70%,rgba(255,255,255,.25) 79%,rgba(255,255,255,0) 88%);background-size:240% 240%;background-position:var(--sx,50%) 50%}
 .cd-scrib.s2{z-index:9}
 .nx .disc .spin,.nx .disc .ring{position:absolute;inset:0;transform-style:preserve-3d;border-radius:50%}
@@ -1378,8 +1379,12 @@ body.home .grain{mix-blend-mode:multiply;opacity:.05}
     const N = W.length, root = $("#cds"), stage = $("#cdStage"), dt = $("#cdDt");
     const touchy = matchMedia("(hover:none)").matches;
     if (touchy) $("#cdHint").textContent = "Swipe to browse, tap the disc to watch";
-    stage.innerHTML = W.map((w, i) => `<div class="cd" data-i="${i}" role="button" tabindex="0" aria-label="${w.t.join(" ")}, ${w.kind.toLowerCase()}. Open" style="--m:url(media/cds/disc-${w.k}.webp)"><span class="bk"></span><span class="e2"></span><span class="e1"></span><span class="fc"></span><span class="lt"></span><span class="sh"></span></div>`).join("");
+    stage.innerHTML = W.map((w, i) => `<div class="cd" data-i="${i}" role="button" tabindex="0" aria-label="${w.t.join(" ")}, ${w.kind.toLowerCase()}. Open" ><span class="bk"></span><span class="e2"></span><span class="e1"></span><span class="fc" style="background-image:url(media/cds/disc-${w.k}.webp)"></span><span class="lt"></span><span class="sh"></span></div>`).join("");
     const discs = $$(".cd", stage);
+    // the discs fade in once their artwork has arrived and is ready to draw, so they never show up grey or half-drawn
+    stage.classList.add("loading");
+    Promise.all([...W.map(w => `media/cds/disc-${w.k}.webp`), "media/cds/disc-back.webp"].map(src => { const im = new Image(); im.decoding = "async"; im.src = src; return (im.decode ? im.decode() : new Promise(r => { im.onload = im.onerror = r; })).catch(() => {}); }))
+      .then(() => stage.classList.remove("loading"));
     $("#cdMenu").innerHTML = W.map((w, i) => `<button data-i="${i}">${w.t.join(" ")}<span>${w.kind}</span></button>`).join("");
 
     let pos = 1, target = 1, shown = -1, running = false, last = 0, snapT = 0, mx = 0, my = 0, tmx = 0, tmy = 0;
@@ -1714,7 +1719,7 @@ body.home .grain{mix-blend-mode:multiply;opacity:.05}
         <section class="nx" id="cdNx" role="button" tabindex="0" aria-label="Next: ${nx.t.join(" ")}">
           ${nxWords(nx).map((wd, r) => `<div class="row">${wd ? `<span class="wd" style="left:${[26, 63, 38, 58][r % 4]}%;--dir:${r % 2 ? 1 : -1};transition-delay:${r * .08}s">${wd}</span>` : ""}</div>`).join("")}
           <div class="row"></div>
-          <div class="stage3"><div class="disc" style="--m:url(media/cds/disc-${nx.k}.webp)"><i class="ring"></i><div class="spin"><span class="e3"></span><span class="e2"></span><span class="e1"></span><span class="fc"></span></div><span class="sh"></span></div></div>
+          <div class="stage3"><div class="disc"><i class="ring"></i><div class="spin"><span class="e3"></span><span class="e2"></span><span class="e1"></span><span class="fc" style="background-image:url(media/cds/disc-${nx.k}.webp)"></span></div><span class="sh"></span></div></div>
           <span class="nx-tip">${touchy ? "Keep swiping" : "Keep scrolling"} for the next film</span>
           <span class="nx-cred"><span class="cap">A project by</span><span class="cap">Aditi Anupam</span></span>
         </section>

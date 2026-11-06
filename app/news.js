@@ -2,20 +2,20 @@
    A scheduled task rewrites this file with fresh headlines from credible outlets, so only this file changes.
    Format: the first line is the heading, the rest are "Place: what happened" in one short sentence. */
 window.NEWS = {
-  updated: "2026-11-04",
+  updated: "2026-11-05",
   items: [
-    "Business and culture, 4 November 2026",
-    "Malaysia: Google plans to invest US$15 billion in data centres and clean energy in 2027 and 2028",
-    "France: Philippe Jaenada wins the Prix Goncourt for L'inconnue du quai de Javel",
-    "Australia: the Reserve Bank raises its cash rate to 4.85%, the highest level in 18 years",
-    "Bangladesh: Art Dhaka, the city's first commercial art fair, opens on 6 November",
-    "Japan: the Nikkei 225 falls 3.6% as chip shares slide, with Kioxia down almost 11%",
-    "Italy: parliament weighs a bill to create a panel for returning Nazi-looted art",
-    "Saudi Arabia: Aramco reports a 34% rise in third-quarter net profit to US$36.25 billion",
-    "Austria: four Vienna galleries close or scale back their spaces as the art market cools",
-    "Germany: Lufthansa trims its 2026 profit outlook as jet fuel costs rise",
-    "United Kingdom: Glasgow receives a request to return the mummy of the Egyptian priest Nekht",
-    "Denmark: Novo Nordisk raises its full-year outlook on stronger demand for its GLP-1 medicines",
-    "United States: a renovation of the New York Studio School uncovers a forgotten Cecily Brown mural"
+    "Business and culture, 5 November 2026",
+    "Japan: Toyota raises its full-year operating profit forecast by 15% to 3.9 trillion yen",
+    "United Kingdom: Sotheby's will auction a rediscovered Albrecht Altdorfer landscape in London, estimated at £3m to £5m",
+    "Australia: the department store chain David Jones enters administration",
+    "China: the US$590 million Shanghai Grand Opera House opens after ten years of construction",
+    "India: Honda names its first India-built electric SUV the Honda Alpha, with a world premiere set for 2 December",
+    "United Kingdom: Charles Dickens' writing chalet and Hastings Castle are added to England's heritage at-risk list",
+    "Hong Kong: new home sales fall 5.8% in October from the month before",
+    "United States: Provincetown's Fine Arts Work Center wins US$1.2 million in municipal backing for its expansion",
+    "China: Tencent launches Hy4, an open-weight AI model with visual reasoning",
+    "United Kingdom: a deathbed portrait of Vanessa Bell by Duncan Grant is found in family papers",
+    "Australia: Woodside Energy plans to cut at least 500 jobs, about 10% of its workforce",
+    "China: the central bank slows the yuan's rise as exporters cope with a record trade surplus"
   ]
 };
